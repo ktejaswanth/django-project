@@ -1,0 +1,66 @@
+{% extends 'Navbar/ProjectNavBar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Contact List</title>
+</head>
+<body>
+{% block body %}
+
+<main class="container text-center">
+    <header>
+        <h1>Add Contact</h1>
+    </header>
+
+    <div class="row">
+        <div class="col">
+            <form method="post" action="{% url 'add_contact' %}">{% csrf_token %}
+                {{ form.as_p }}
+                <div class="d-grid gap-2 col-6 mx-auto mt-4">
+                    <button class="btn btn-primary" type="submit">Submit</button>
+                </div>
+            </form>
+        </div>
+
+        <div class="col-auto d-flex align-items-center">
+            <div style="border-left: 2px solid black; height: 100%;"></div>
+        </div>
+
+        <div class="col">
+            <h2>Contacts</h2>
+            <table class="table">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Phone</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Action</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    {% for contact in contacts %}
+                        <tr>
+                            <td>{{ contact.name }}</td>
+                            <td>{{ contact.phone }}</td>
+                            <td>{{ contact.email }}</td>
+                            <td>{{ contact.address }}</td>
+                            <td><td><a href="{% url 'delete_contact' contact.pk %}" class="text-danger">Delete</a></td>
+</td>
+                        </tr>
+                    {% empty %}
+                        <tr>
+                            <td colspan="5">No contacts available.</td>
+                        </tr>
+                    {% endfor %}
+                </tbody>
+            </table>
+        </div>
+    </div>
+</main>
+
+{% endblock %}
+</body>
+</html>

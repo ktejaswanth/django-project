@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+{% extends 'Navbar/ProjectNavbar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+</head>
+<body>
+{% block body %}
+<div class="container text-center">
+  <div class="row">
+    <div class="col">
+      First in DOM, no order applied
+        <br>
+<!-- name in the url's.py and url should match -->
+        <form method="POST" action="{% url 'timepagelogic' %}">
+        <!--name and the url tag should be same-->
+        <!--to load the form in the web we use the below code-->
+        {% csrf_token %}
+            <label>Enter Text: </label>
+            <input type="text" name="date1" required>
+              <button type="submit">Submit</button>
+        </form>
+    </div>
+    <div class="col order-5">
+      Second in DOM, with a larger order
+        <h1> From Today,{{ number1 }} days the date is {{ran}} <br><br> {{ ran1 }} is {{ ran3 }}</h1>
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+</body>
+</html>
