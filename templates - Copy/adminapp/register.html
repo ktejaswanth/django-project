@@ -1,0 +1,93 @@
+<!DOCTYPE html>
+{% extends 'Navbar/ProjectNavBar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    {% block body %}
+    <!-- Uncomment and link your CSS file if needed -->
+    <!-- <link rel="stylesheet" type="text/css" href="{% static 'css/register.css' %}"> -->
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h2 {
+            text-align: center;
+            margin-bottom: 20px;
+        }
+        label {
+            margin-top: 10px;
+            font-weight: bold;
+        }
+        input[type="text"],
+        input[type="email"],
+        input[type="password"] {
+            width: calc(100% - 20px);
+            padding: 10px;
+            margin: 5px 0;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            font-size: 16px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            width: 100%;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        p {
+            text-align: center;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h2>Register</h2>
+        <form action="{% url 'registerpagelogic' %}" method="post">
+            {% csrf_token %}
+            <label for="username">User Name:</label>
+            <input type="text" name="username" placeholder="Username" required>
+            
+            <label for="firstname">First Name:</label>
+            <input type="text" id="firstname" name="firstname" placeholder="First Name" required>
+            
+            <label for="lastname">Last Name:</label>
+            <input type="text" id="lastname" name="lastname" placeholder="Last Name" required>
+            
+            <label for="email">Email:</label>
+            <input type="email" id="email" name="email" placeholder="Email" required>
+            
+            <label for="pass">Password:</label>
+            <input type="password" id="pass" name="password" placeholder="Password" required>
+            
+            <label for="pass1">Confirm Password:</label>
+            <input type="password" id="pass1" name="password1" placeholder="Confirm Password" required>
+            
+            <button type="submit">Register</button>
+        </form>
+        <p>Already have an account? <a href="{% url 'loginpagecall' %}">Sign In</a></p>
+    </div>
+    {% endblock %}
+</body>
+</html>
