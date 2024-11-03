@@ -1,35 +1,76 @@
 <!DOCTYPE html>
-{% extends 'Navbar/ProjectNavbar.html' %}
+{% extends 'Navbar/ProjectNavBar.html' %}
 {% load static %}
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>User Input Form</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+    </style>
 </head>
 <body>
 {% block body %}
 <div class="container text-center">
+  <h2>Input Form</h2>
   <div class="row">
     <div class="col">
-      First in DOM, no order applied
-        <br>
-<!-- name in the url's.py and url should match -->
-        <form method="post" action="{% url 'printpagelogic' %}">
-        <!--name and the url tag should be same-->
-        <!--to load the form in the web we use the below code-->
+      <form method="post" action="{% url 'printpagelogic' %}">
         {% csrf_token %}
-            <label>Enter Text: </label>
-            <input type="text" name="user_input" required>
-              <button type="submit">Submit</button>
-        </form>
+        <label for="user_input">Enter Text:</label>
+        <input type="text" id="user_input" name="user_input" required>
+        <button type="submit">Submit</button>
+      </form>
     </div>
-    <div class="col order-5">
-      Second in DOM, with a larger order
-        <h1>{{user_input}}</h1>
+    <div class="col">
+      <h1>{{ user_input }}</h1>
     </div>
   </div>
 </div>
-
 {% endblock %}
 </body>
 </html>
