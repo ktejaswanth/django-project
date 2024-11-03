@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+{% extends 'Navbar/ProjectNavBar.html' %}
+{% load static %}
+
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Simple Calculator</title>
+</head>
+<body>
+{% block body %}
+
+<div class="container mt-5">
+  <div class="row justify-content-center">
+    <!-- Calculator Form Section -->
+    <div class="col-md-6 text-center mb-5">
+      <h1 class="text-primary">Simple Calculator</h1>
+      <form method="post" action="{% url 'calculatorpagelogic' %}" class="mt-4">
+        {% csrf_token %}
+
+        <div class="mb-3">
+          <input type="number" name="num1" class="form-control" step="any" placeholder="Enter first number" required>
+        </div>
+
+        <div class="mb-3">
+          <input type="number" name="num2" class="form-control" step="any" placeholder="Enter second number" required>
+        </div>
+
+        <div class="mb-3">
+          <select name="operation" class="form-select" required>
+            <option value="add">+</option>
+            <option value="subtract">-</option>
+            <option value="multiply">*</option>
+            <option value="divide">/</option>
+          </select>
+        </div>
+
+        <button type="submit" class="btn btn-primary btn-lg">Calculate</button>
+      </form>
+    </div>
+
+    <!-- Result Display Section -->
+    <div class="col-md-6 text-center">
+      <h3 class="text-secondary">Output will be displayed here</h3>
+      {% if result is not None %}
+        <h2 class="mt-3">Result: {{ result }}</h2>
+      {% endif %}
+    </div>
+  </div>
+</div>
+
+{% endblock %}
+</body>
+</html>

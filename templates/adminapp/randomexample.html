@@ -1,0 +1,83 @@
+<!DOCTYPE html>
+{% extends 'Navbar/ProjectNavBar.html' %}
+{% load static %}
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Random Number Generator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            padding: 20px;
+        }
+        .container {
+            max-width: 800px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+        }
+        h1 {
+            color: #333;
+            margin-top: 20px;
+        }
+        form {
+            margin-bottom: 20px;
+        }
+        label {
+            font-size: 16px;
+            margin-right: 10px;
+        }
+        input[type="text"] {
+            padding: 10px;
+            border-radius: 5px;
+            border: 1px solid #ccc;
+            width: 60%;
+            margin-right: 10px;
+        }
+        button {
+            background-color: #007bff;
+            color: white;
+            border: none;
+            padding: 10px 15px;
+            cursor: pointer;
+            border-radius: 5px;
+            font-size: 16px;
+            transition: background-color 0.3s ease;
+        }
+        button:hover {
+            background-color: #0056b3;
+        }
+        .output {
+            margin-top: 20px;
+            font-size: 24px;
+            font-weight: bold;
+            color: #333;
+        }
+    </style>
+</head>
+<body>
+{% block body %}
+<div class="container text-center">
+  <h2>Random Number Generator</h2>
+  <div class="row">
+    <div class="col">
+      <form method="post" action="{% url 'randompagelogic' %}">
+        {% csrf_token %}
+        <label for="number1">Enter a Number:</label>
+        <input type="text" id="number1" name="number1" required>
+        <button class="btn btn-primary" type="submit">Submit</button>
+      </form>
+    </div>
+    <div class="col">
+      <strong>Output:</strong>
+      <div class="output">{{ ran }}</div>
+    </div>
+  </div>
+</div>
+{% endblock %}
+</body>
+</html>
